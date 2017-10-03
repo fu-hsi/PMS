@@ -301,3 +301,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.xml
+*.filters
+*.vcxproj
+examples/Basic/__vm/.Basic.vsarduino.h
+examples/Advanced/__vm/.Advanced.vsarduino.h

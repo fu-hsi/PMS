@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map For PMS Library
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+PMS	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+sleep	KEYWORD2
+wakeUp	KEYWORD2
+activeMode	KEYWORD2
+passiveMode	KEYWORD2
+requestRead	KEYWORD2
+read	KEYWORD2
+loop	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+STATUS_WAITING	LITERAL1
+STATUS_OK	LITERAL1
+MODE_ACTIVE	LITERAL1
+MODE_PASSIVE	LITERAL1
