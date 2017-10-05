@@ -141,6 +141,5 @@ Try to avoid such a solution if your project requires it.
 
 For more accurate measurements, you can read several samples (in passive or active mode) and calculate the average.
 >  Stable data should be got at least 30 seconds after the sensor wakeup from the sleep mode because of the fan's performance.
->  I got nice resuylt in active mode.
 
 Personally, I get more repeatable measurements in active mode (Basic example).
