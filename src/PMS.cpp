@@ -36,7 +36,7 @@ void PMS::passiveMode()
   _mode = MODE_PASSIVE;
 }
 
-// Request read in Active Mode.
+// Request read in Passive Mode.
 void PMS::requestRead()
 {
   if (_mode == MODE_PASSIVE)
