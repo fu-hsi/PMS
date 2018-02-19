@@ -13,8 +13,6 @@ void loop()
 {
   if (pms.read(data))
   {
-    Serial1.println("Data:");
-
     Serial1.print("PM 1.0 (ug/m3): ");
     Serial1.println(data.PM_AE_UG_1_0);
 
@@ -26,4 +24,6 @@ void loop()
 
     Serial1.println();
   }
+
+  // Do other stuff...
 }

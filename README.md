@@ -28,11 +28,8 @@ void setup()
 
 void loop()
 {
-  // Non-blocking function
   if (pms.read(data))
   {
-    Serial1.println("Data:");
-
     Serial1.print("PM 1.0 (ug/m3): ");
     Serial1.println(data.PM_AE_UG_1_0);
 
@@ -44,24 +41,21 @@ void loop()
 
     Serial1.println();
   }
+
+  // Do other stuff...
 }
 ```
 ## Output
 ```
-Data:
 PM 1.0 (ug/m3): 13
 PM 2.5 (ug/m3): 18
 PM 10.0 (ug/m3): 23
 
-Data:
-PM 1.0 (ug/m3): 13
-PM 2.5 (ug/m3): 18
-PM 10.0 (ug/m3): 23
-
-Data:
 PM 1.0 (ug/m3): 12
 PM 2.5 (ug/m3): 19
 PM 10.0 (ug/m3): 24
+
+...
 ```
 ## Advanced example
 Read in passive mode but not the best way (see additional remarks). 
@@ -80,18 +74,16 @@ void setup()
 
 void loop()
 {
-  Serial1.println("Wake up and wait 30 seconds for stable readings...");
+  Serial1.println("Waking up, wait 30 seconds for stable readings...");
   pms.wakeUp();
   delay(30000);
 
-  Serial1.println("Send request read...");
+  Serial1.println("Send read request...");
   pms.requestRead();
 
-  Serial1.println("Wait max. 10 seconds for read (blocking function)...");
-  if (pms.read(data, 10000))
+  Serial1.println("Reading data...");
+  if (pms.readUntil(data))
   {
-    Serial1.println("Data:");
-
     Serial1.print("PM 1.0 (ug/m3): ");
     Serial1.println(data.PM_AE_UG_1_0);
 
@@ -100,8 +92,6 @@ void loop()
 
     Serial1.print("PM 10.0 (ug/m3): ");
     Serial1.println(data.PM_AE_UG_10_0);
-
-    Serial1.println();
   }
   else
   {
@@ -115,31 +105,29 @@ void loop()
 ```
 ## Output
 ```
-Wake up, wait 30 seconds for stable readings...
-Send request read...
-Wait max. 10 seconds for read...
-Data:
-PM 1.0 (ug/m3): 18
-PM 2.5 (ug/m3): 24
+Waking up, wait 30 seconds for stable readings...
+Send read request...
+Reading data...
+PM 1.0 (ug/m3): 13
+PM 2.5 (ug/m3): 18
+PM 10.0 (ug/m3): 23
+Going to sleep for 60 seconds.
+Waking up, wait 30 seconds for stable readings...
+Send read request...
+Reading data...
+PM 1.0 (ug/m3): 12
+PM 2.5 (ug/m3): 19
 PM 10.0 (ug/m3): 24
 Going to sleep for 60 seconds.
-Wake up, wait 30 seconds for stable readings...
-Send request read...
-Wait max. 10 seconds for read...
-Data:
-PM 1.0 (ug/m3): 20
-PM 2.5 (ug/m3): 30
-PM 10.0 (ug/m3): 40
-Going to sleep for 60 seconds.
+
+...
 ```
 ## Additional remarks
 Tested with PMS 7003 and ESP-12E Development Board.
 All Plantower PMS sensors uses the same protocol (let me know if you have any problems).
 
-Please consider, that delay() function in examples is a blocking function.
-Try to avoid such a solution if your project requires it.
+Please consider, that delay() function in examples is a blocking function.  
+Try to avoid such a solution if your project requires it (see Expert.ino example in examples directory).
 
 For more accurate measurements, you can read several samples (in passive or active mode) and calculate the average.
->  Stable data should be got at least 30 seconds after the sensor wakeup from the sleep mode because of the fan's performance.
-
-Personally, I get more repeatable measurements in active mode (Basic example).
+> Stable data should be got at least 30 seconds after the sensor wakeup from the sleep mode because of the fan's performance.

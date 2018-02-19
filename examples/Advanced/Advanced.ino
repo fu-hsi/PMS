@@ -12,18 +12,16 @@ void setup()
 
 void loop()
 {
-  Serial1.println("Wake up, wait 30 seconds for stable readings...");
+  Serial1.println("Waking up, wait 30 seconds for stable readings...");
   pms.wakeUp();
   delay(30000);
 
-  Serial1.println("Send request read...");
+  Serial1.println("Send read request...");
   pms.requestRead();
 
-  Serial1.println("Wait max. 10 seconds for read...");
-  if (pms.read(data, 10000))
+  Serial1.println("Wait max. 1 second for read...");
+  if (pms.readUntil(data))
   {
-    Serial1.println("Data:");
-
     Serial1.print("PM 1.0 (ug/m3): ");
     Serial1.println(data.PM_AE_UG_1_0);
 
