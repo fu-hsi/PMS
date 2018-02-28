@@ -21,19 +21,18 @@ void setup()
   Serial.begin(PMS::BAUD_RATE); 
   DEBUG_OUT.begin(9600);
 
-#ifdef DEEP_SLEEP
-  pms.wakeUp();
-  delay(PMS_READ_DELAY);
-  readData();
-  pms.sleep();
-  ESP.deepSleep(PMS_READ_INTERVAL * 1000);
-#else
+  // Switch to passive mode.
+  pms.passiveMode();
+
   // Default state after sensor power, but undefined after ESP restart e.g. by OTA flash, so we have to manually wake up the sensor for sure.
   // Some logs from bootloader is sent via Serial port to the sensor after power up. This can cause invalid first read or wake up so be patient and wait for next read cycle.
   pms.wakeUp();
 
-  // Switch to passive mode.
-  pms.passiveMode();
+#ifdef DEEP_SLEEP
+  delay(PMS_READ_DELAY);
+  readData();
+  pms.sleep();
+  ESP.deepSleep(PMS_READ_INTERVAL * 1000);
 #endif // DEEP_SLEEP
 }
 

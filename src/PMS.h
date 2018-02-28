@@ -7,6 +7,8 @@ class PMS
 {
 public:
   static const uint16_t SINGLE_RESPONSE_TIME = 1000;
+  static const uint16_t TOTAL_RESPONSE_TIME = 1000 * 10;
+  static const uint16_t STEADY_RESPONSE_TIME = 1000 * 30;
 
   static const uint16_t BAUD_RATE = 9600;
 
