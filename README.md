@@ -1,3 +1,5 @@
+This is an edit of the forked library that allows for access to the particle totals as well. I only tested this on the 7003 but later I may dive into the data sheets and see if it's compliant with the other sensors.
+
 # PMS Library
 Arduino library for Plantower PMS sensors.
 Supports PMS x003 sensors (1003, 3003, 5003, 6003, 7003).
