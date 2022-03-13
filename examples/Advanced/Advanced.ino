@@ -30,6 +30,22 @@ void loop()
 
     Serial1.print("PM 10.0 (ug/m3): ");
     Serial1.println(data.PM_AE_UG_10_0);
+
+    if (data.hasParticles)
+    {
+        Serial1.print("Particles > 0.3um: ");
+        Serial1.println(data.PM_TOTALPARTICLES_0_3);
+        Serial1.print("Particles > 0.5um: ");
+        Serial1.println(data.PM_TOTALPARTICLES_0_5);
+        Serial1.print("Particles > 1.0um: ");
+        Serial1.println(data.PM_TOTALPARTICLES_1_0);
+        Serial1.print("Particles > 2.5um: ");
+        Serial1.println(data.PM_TOTALPARTICLES_2_5);
+        Serial1.print("Particles > 5.0um: ");
+        Serial1.println(data.PM_TOTALPARTICLES_5_0);
+        Serial1.print("Particles > 10.0um: ");
+        Serial1.println(data.PM_TOTALPARTICLES_10_0);
+    }
   }
   else
   {
